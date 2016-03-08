@@ -259,6 +259,23 @@ namespace GUI
                         var ap = new Types.Audio.Player(resource);
                         resTabs.TabPages.Add(soundTab);
                         break;
+                    case ResourceType.Model:
+                        var model = new Types.Model(resource);
+
+                        var resourceMesh = new Resource();
+                        resourceMesh.Read(model.GetMesh());
+
+                        if (!resourceMesh.Blocks.ContainsKey(BlockType.VBIB))
+                        {
+                            Console.WriteLine("Old style model, no VBIB!");
+                            break;
+                        }
+                        var modelmeshTab = new TabPage("MESH");
+                        var modelmv = new Types.Renderer.Renderer(resourceMesh, mainTabs);
+                        var modelglControl = modelmv.createGL();
+                        modelmeshTab.Controls.Add(modelglControl);
+                        resTabs.TabPages.Add(modelmeshTab);
+                        break;
                     case ResourceType.Mesh:
                         if (!resource.Blocks.ContainsKey(BlockType.VBIB))
                         {
@@ -266,7 +283,7 @@ namespace GUI
                             break;
                         }
                         var meshTab = new TabPage("MESH");
-                        var mv = new Types.Renderer.Renderer(fileName, resource, mainTabs);
+                        var mv = new Types.Renderer.Renderer(resource, mainTabs);
                         var glControl = mv.createGL();
                         meshTab.Controls.Add(glControl);
                         resTabs.TabPages.Add(meshTab);
