@@ -271,6 +271,15 @@ namespace GUI
                     case ResourceType.Model:
                         var model = new Types.Model(resource);
 
+                        var animGroupPath = model.GetAnimationGroup();
+                        if (!string.IsNullOrEmpty(animGroupPath))
+                        {
+                            var animGroup = new Resource();
+                            animGroup.Read(animGroupPath);
+
+                            var animGroupLoader = new Types.Renderer.AnimationGroupLoader(animGroup, fileName);
+                        }
+
                         var resourceMesh = new Resource();
                         resourceMesh.Read(model.GetMesh());
 
