@@ -290,7 +290,7 @@ namespace GUI
                         }
                         var modelmeshTab = new TabPage("MESH");
                         var modelmv = new Types.Renderer.Renderer(resourceMesh, mainTabs, fileName, currentPackage);
-                        var modelglControl = modelmv.createGL();
+                        var modelglControl = modelmv.CreateGL();
                         modelmeshTab.Controls.Add(modelglControl);
                         resTabs.TabPages.Add(modelmeshTab);
                         break;
@@ -302,7 +302,7 @@ namespace GUI
                         }
                         var meshTab = new TabPage("MESH");
                         var mv = new Types.Renderer.Renderer(resource, mainTabs, fileName, currentPackage);
-                        var glControl = mv.createGL();
+                        var glControl = mv.CreateGL();
                         meshTab.Controls.Add(glControl);
                         resTabs.TabPages.Add(meshTab);
                         break;
